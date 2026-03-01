@@ -30,3 +30,14 @@ This repository is built to demonstrate enterprise-grade Zero Trust principles:
 1. **Install Dependencies:**
    ```bash
    pip install -r requirements.txt
+   ```
+
+2. **Linting:**
+   ```bash
+   ruff check .
+   ```
+
+3. **Build Container:**
+   ```bash
+   docker build -t trading-app .
+   ```
