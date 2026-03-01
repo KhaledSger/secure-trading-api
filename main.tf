@@ -23,6 +23,7 @@ resource "random_pet" "bucket_name" {
 resource "aws_s3_bucket" "example_bucket" {
   # checkov:skip=CKV_AWS_18:Logging not required for this demo
   # checkov:skip=CKV_AWS_144:Cross-region replication not required for this demo
+  # checkov:skip=CKV_AWS_145:Using AES256 (SSE-S3) instead of KMS to save costs for demo
   bucket = random_pet.bucket_name.id
 }
 
