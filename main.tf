@@ -24,6 +24,7 @@ resource "aws_s3_bucket" "example_bucket" {
   # checkov:skip=CKV_AWS_18:Logging not required for this demo
   # checkov:skip=CKV_AWS_144:Cross-region replication not required for this demo
   # checkov:skip=CKV_AWS_145:Using AES256 (SSE-S3) instead of KMS to save costs for demo
+  # checkov:skip=CKV2_AWS_62:Event notifications not required for this demo
   bucket = random_pet.bucket_name.id
 }
 
@@ -49,4 +50,17 @@ resource "aws_s3_bucket_public_access_block" "public_access" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "lifecycle" {
+  bucket = aws_s3_bucket.example_bucket.id
+
+  rule {
+    id     = "expire-old-versions"
+    status = "Enabled"
+
+    noncurrent_version_expiration {
+      noncurrent_days = 90
+    }
+  }
 }
