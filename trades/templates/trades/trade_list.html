@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trade List</title>
+</head>
+<body>
+    <h1>Assets</h1>
+    <ul>
+        {% for asset in assets %}
+            <li>{{ asset.name }} ({{ asset.symbol }}): ${{ asset.current_price }}</li>
+        {% empty %}
+            <li>No assets found.</li>
+        {% endfor %}
+    </ul>
+
+    <h1>All Trades</h1>
+    <ul>
+        {% for trade in trades %}
+            <li>{{ trade }}</li>
+        {% empty %}
+            <li>No trades have been made yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
